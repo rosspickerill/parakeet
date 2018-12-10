@@ -1,4 +1,5 @@
 module.exports = {
+ entry: './src/server.js',
  module: {
    rules: [
      {
@@ -12,5 +13,7 @@ module.exports = {
        }
      }
    ]
- }
+ },
+ name: 'server',
+ target: 'node'
 }
