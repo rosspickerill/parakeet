@@ -1,4 +1,5 @@
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const serverConfig = {
  entry: './src/server.js',
@@ -45,6 +46,14 @@ const clientConfig = {
       }
     ]
   },
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      defaultSizes: 'parsed',
+      openAnalyzer: false,
+      reportFilename: '../bundle.html',
+    })
+  ],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist/public'),
