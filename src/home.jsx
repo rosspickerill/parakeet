@@ -1,11 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 class Home extends React.PureComponent {
   render() {
+    const PageType = styled.div`
+      background-color: red;
+    `
     return (
       <React.Fragment>
-        <div>home page</div>
+        <PageType>home page</PageType>
         <nav>
           <ul>
             <li><Link to='/'>Home</Link></li>
