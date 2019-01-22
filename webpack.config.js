@@ -1,5 +1,6 @@
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
 
 const serverConfig = {
  entry: './src/server.js',
@@ -11,7 +12,8 @@ const serverConfig = {
        use: {
          loader: 'babel-loader',
          options: {
-           presets: ['@babel/preset-env','@babel/react']
+           presets: ['@babel/preset-env','@babel/react'],
+           plugins: ['@babel/plugin-syntax-dynamic-import']
          }
        },
        resolve: {
@@ -37,7 +39,9 @@ const clientConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env','@babel/react']
+            presets: ['@babel/preset-env','@babel/react'],
+            plugins: ['@babel/plugin-syntax-dynamic-import', "react-loadable/babel"]
+
           }
         },
         resolve: {
@@ -52,12 +56,16 @@ const clientConfig = {
       defaultSizes: 'parsed',
       openAnalyzer: false,
       reportFilename: '../bundle.html',
+    }),
+    new ReactLoadablePlugin({
+      filename: './dist/react-loadable.json',
     })
   ],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist/public'),
-    filename: 'client.js'
+    filename: '[name].client.js',
+    chunkFilename: '[name].client.js'
   },
   name: 'client'
 }

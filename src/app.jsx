@@ -1,16 +1,34 @@
 import React from 'react'
-import Home from './home'
-import About from './about'
-import Users from './users'
 import { Route } from 'react-router-dom'
+import Loadable from 'react-loadable'
+
+const LoadableHome = Loadable({
+  loader: () => import('./home'),
+  loading() {
+    return null
+  }
+})
+
+const LoadableUsers = Loadable({
+  loader: () => import('./users'),
+  loading() {
+    return null
+  }
+})
+const LoadableAbout = Loadable({
+  loader: () => import('./about'),
+  loading() {
+    return null
+  }
+})
 
 const Component = () => {
  return (
    <React.Fragment>
     <div>A react app on the server</div>
-      <Route path="/" exact component={Home} />
-      <Route path="/about/" component={About} />
-      <Route path="/users/" component={Users} />
+      <Route path="/" exact component={LoadableHome} />
+      <Route path="/about/" component={LoadableAbout} />
+      <Route path="/users/" component={LoadableUsers} />
   </React.Fragment>
  )
 }
