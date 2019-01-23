@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+const PageType = styled.div`
+background-color: red;
+`
+
 class Home extends React.PureComponent {
   render() {
-    const PageType = styled.div`
-      background-color: red;
-    `
     return (
       <React.Fragment>
         <PageType>home page</PageType>

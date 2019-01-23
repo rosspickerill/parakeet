@@ -1,9 +1,15 @@
 const path = require('path')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
 const serverConfig = {
  entry: './src/server.js',
+ externals: (context, request, callback) => {
+  if (/(react-loadable|stats)\.json/.test(request)) {
+    return callback(null, `commonjs ${ request }`)
+  }
+  callback()
+},
  module: {
    rules: [
      {
@@ -13,7 +19,7 @@ const serverConfig = {
          loader: 'babel-loader',
          options: {
            presets: ['@babel/preset-env','@babel/react'],
-           plugins: ['@babel/plugin-syntax-dynamic-import']
+           plugins: ['@babel/plugin-syntax-dynamic-import', 'react-loadable/babel']
          }
        },
        resolve: {
@@ -22,6 +28,11 @@ const serverConfig = {
      }
    ]
  },
+
+ output: {
+  path: path.resolve(__dirname, 'dist'),
+  publicPath: '/assets/'
+},
  name: 'server',
  target: 'node'
 }
@@ -40,7 +51,7 @@ const clientConfig = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env','@babel/react'],
-            plugins: ['@babel/plugin-syntax-dynamic-import', "react-loadable/babel"]
+            plugins: ['@babel/plugin-syntax-dynamic-import', 'react-loadable/babel']
 
           }
         },
@@ -65,9 +76,10 @@ const clientConfig = {
   output: {
     path: path.resolve(__dirname, 'dist/public'),
     filename: '[name].client.js',
-    chunkFilename: '[name].client.js'
+    chunkFilename: '[name].client.js',
+    publicPath: '/assets/'
   },
   name: 'client'
 }
 
-module.exports = [serverConfig, clientConfig]
+module.exports = [clientConfig, serverConfig]

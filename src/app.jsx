@@ -27,8 +27,8 @@ const Component = () => {
    <React.Fragment>
     <div>A react app on the server</div>
       <Route path="/" exact component={LoadableHome} />
-      <Route path="/about/" component={LoadableAbout} />
-      <Route path="/users/" component={LoadableUsers} />
+      <Route path="/about/" exact component={LoadableAbout} />
+      <Route path="/users/" exact component={LoadableUsers} />
   </React.Fragment>
  )
 }

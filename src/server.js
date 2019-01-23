@@ -10,8 +10,6 @@ import { createStore } from 'redux'
 import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import stats from '../dist/react-loadable.json'
-// /Users/ross/Documents/repos/parakeet/dist/react-loadable.json
-// /Users/ross/Documents/repos/parakeet/src/server.js
 
 const app = express()
 const port = 3000
@@ -48,11 +46,13 @@ app.get('/*', (req, res) => {
      <script>
       window.__INITIAL_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
      </script>
-     <script src="/assets/main.client.js"></script>
-     <script src="/assets/0.client.js"></script>
-     <script src="/assets/1.client.js"></script>
-     <script src="/assets/2.client.js"></script>
-     <script src="/assets/3.client.js"></script>
+     ${bundles.map(bundle => {
+      return `<script src="/assets/${bundle.file}"></script>`
+      // alternatively if you are using publicPath option in webpack config
+      // you can use the publicPath value from bundle, e.g:
+      // return `<script src="${bundle.publicPath}"></script>`
+    }).join('\n')}
+    <script src="/assets/main.client.js"></script>
    </body>
  </html>`)
 })
