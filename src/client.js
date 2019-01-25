@@ -13,11 +13,17 @@ delete window.__INITIAL_STATE // allows passed state to be garbage collected
 const store = createStore(appReducers, preloadedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 Loadable.preloadReady().then(() =>{
+  const theme = {
+    colour: 'red',
+  }
+
   ReactDOM.hydrate(
     <Provider store={ store }>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>,
     document.getElementById('root')
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from './components/link'
 import { connect } from 'react-redux'
 
 class About extends React.PureComponent {
