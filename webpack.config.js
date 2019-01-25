@@ -19,7 +19,12 @@ const serverConfig = {
          loader: 'babel-loader',
          options: {
            presets: ['@babel/preset-env','@babel/react'],
-           plugins: ['@babel/plugin-syntax-dynamic-import', 'react-loadable/babel']
+           plugins: ['@babel/plugin-syntax-dynamic-import',
+           ['styled-components', {
+            displayName: true,
+            ssr: true,
+          }],
+          'react-loadable/babel']
          }
        },
        resolve: {
@@ -51,7 +56,13 @@ const clientConfig = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env','@babel/react'],
-            plugins: ['@babel/plugin-syntax-dynamic-import', 'react-loadable/babel']
+            plugins: [
+              '@babel/plugin-syntax-dynamic-import',
+              ['styled-components', {
+                displayName: true,
+                ssr: true,
+              }],
+              'react-loadable/babel']
 
           }
         },

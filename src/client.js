@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import appReducers from './reducers'
 import Loadable from 'react-loadable'
+import { ThemeProvider } from 'styled-components'
 
 const preloadedState = window.__INITIAL_STATE
 delete window.__INITIAL_STATE // allows passed state to be garbage collected
