@@ -16,6 +16,7 @@ const store = createStore(appReducers, preloadedState, window.__REDUX_DEVTOOLS_E
 Loadable.preloadReady().then(() =>{
   const theme = {
     colour: 'red',
+    secondary: 'blue',
   }
 
   ReactDOM.hydrate(

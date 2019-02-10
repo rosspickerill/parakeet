@@ -22,6 +22,7 @@ app.get('/*', (req, res) => {
   let modules = []
   const theme = {
     colour: 'red',
+    secondary: 'blue'
   }
   const appString = ReactDOMServer.renderToString(
     <StaticRouter location={req.url} context={context}>
