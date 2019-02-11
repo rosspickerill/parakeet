@@ -10,13 +10,12 @@ class WrappedTestTheme extends React.PureComponent {
 }
 
 const TestTheme = styled.div`
-  background-color: ${({theme}) => theme.secondary }
+  background-color: ${({theme}) => theme.palette.accent[500] }
 `
 
 class About extends React.PureComponent {
   render() {
     const { actor = 'default actor' } = this.props
-
     return (<React.Fragment>
       <div>about page</div>
       <div>{actor}</div>
