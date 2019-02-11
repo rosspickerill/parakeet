@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 class Users extends React.PureComponent {
   render() {
@@ -12,6 +13,7 @@ class Users extends React.PureComponent {
           <li><Link to='/users/'>Users</Link></li>
         </ul>
       </nav>
+      <Button color="primary">Material UI</Button>
     </React.Fragment>)
   }
 }

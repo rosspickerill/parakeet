@@ -32,6 +32,7 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "babel-plugin-styled-components": "^1.10.0",
     "express": "^4.16.4",
     "react": "^16.6.3",

@@ -10,6 +10,9 @@ import { createStore } from 'redux'
 import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import stats from '../dist/react-loadable.json'
+import { createMuiTheme } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
 
 const app = express()
 const port = 3000
@@ -20,10 +23,19 @@ app.get('/*', (req, res) => {
   const sheet = new ServerStyleSheet()
   const store = createStore(appReducers)
   let modules = []
-  const theme = {
-    colour: 'red',
-    secondary: 'blue'
-  }
+  // const theme = {
+  //   colour: 'red',
+  //   secondary: 'blue'
+  // }
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: green,
+      accent: red,
+      type: 'light',
+    },
+  });
+
   const appString = ReactDOMServer.renderToString(
     <StaticRouter location={req.url} context={context}>
       <Provider store={store}>
