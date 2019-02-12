@@ -10,7 +10,7 @@ class WrappedTestTheme extends React.PureComponent {
 }
 
 const TestTheme = styled.div`
-  background-color: ${({theme}) => theme.palette.accent[500] }
+  background-color: ${({theme}) => theme.palette.secondary[500] }
 `
 
 class About extends React.PureComponent {

@@ -61,8 +61,18 @@ app.get('/*', (req, res) => {
  return res.status(200).send(`<!doctype html>
  <html>
    <head>
+   <style>
+    html {
+      font-size: 16px;
+    }
+    body {
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+    }
+   </style>
     <meta content='width=device-width, initial-scale=1.0' name='viewport' />
     <style id="jss-server-side">${css}</style>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500" rel="stylesheet">
     ${ sheet.getStyleTags() }
    </head>
    <body>

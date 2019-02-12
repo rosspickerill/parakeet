@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import styled from 'styled-components'
 import { withTheme, withStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const LoadableHome = Loadable({
   loader: () => import('./home'),
@@ -36,21 +38,66 @@ const StyledAppBar = styled(AppBar)`
     background-color: ${({theme}) => theme.palette.primary[800] };
   }
 `
+const StyledNavItem = styled.li`
+  && {
+    display: none;
+    float: right;
+    margin: 0 0.25rem;
 
-const styles = theme => ({
-  appbar:{
-    color: theme.palette.accent[700],
+    @media (min-width: ${({theme}) => theme.breakpoints.values.sm }px) {
+      display: block;
+    }
+}
+`
+const StyledMenu = styled.li`
+  && {
+    float: right;
+    list-style: none;
   }
-})
+`
+
+const StyledNav = styled.ul`
+  && {
+    width: 100%
+}
+`
+const StyledButton = styled(Button)`
+  && {
+    padding: 0.75rem;
+    letter-spacing: 0.8px;
+}
+`
 
 const Component = ({theme, classes}) => {
  return (
     <React.Fragment>
       <StyledAppBar position='sticky'>
         <Toolbar>
-          <IconButton color='accent' aria-label="Menu">
-           <MenuIcon classes={classes.appbar} />
-          </IconButton>
+              <StyledNav>
+                <IconButton color='secondary' aria-label="Menu">
+                    <MenuIcon />
+                </IconButton>
+                <StyledMenu>
+                  <IconButton color='secondary' aria-label="Menu">
+                    <MenuIcon />
+                  </IconButton>
+                </StyledMenu>
+                <StyledNavItem>
+                  <StyledButton variant="contained" color='secondary'>Sign Up</StyledButton>
+                </StyledNavItem>
+                <StyledNavItem>
+                  <StyledButton>Sign In</StyledButton>
+                </StyledNavItem>
+                <StyledNavItem>
+                  <StyledButton>FAQ</StyledButton>
+                </StyledNavItem>
+                <StyledNavItem>
+                  <StyledButton>Sell</StyledButton>
+                </StyledNavItem>
+                <StyledNavItem>
+                  <StyledButton>Buy</StyledButton>
+                </StyledNavItem>
+              </StyledNav>
       </Toolbar>
      </StyledAppBar>
     <div>A react app on the server</div>
@@ -61,4 +108,4 @@ const Component = ({theme, classes}) => {
  )
 }
 
-export default withTheme()(withStyles(styles)(Component))
+export default withTheme()(Component)
