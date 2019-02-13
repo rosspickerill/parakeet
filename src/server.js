@@ -22,7 +22,7 @@ const app = express()
 const port = 3000
 app.use('/assets', express.static('dist/public'))
 
-app.get('/*', (req, res) => {
+export function getRouteHandler(req, res){
   const context = {}
   const sheet = new ServerStyleSheet()
   const store = createStore(appReducers)
@@ -89,6 +89,10 @@ app.get('/*', (req, res) => {
     <script src="/assets/main.client.js"></script>
    </body>
  </html>`)
+}
+
+app.get('/*', (req, res) => {
+  getRouteHandler(req, res)
 })
 
 

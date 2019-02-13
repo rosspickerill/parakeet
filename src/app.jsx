@@ -13,6 +13,7 @@ import styled from 'styled-components'
 import { withTheme, withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { hot } from 'react-hot-loader/root'
 
 const LoadableHome = Loadable({
   loader: () => import('./home'),
@@ -116,4 +117,4 @@ const Component = ({theme, classes}) => {
  )
 }
 
-export default withTheme()(Component)
+export default hot(module)(withTheme()(Component))
