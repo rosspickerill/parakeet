@@ -4,6 +4,7 @@ import Loadable from 'react-loadable'
 
 import AppBar from '@material-ui/core/AppBar'
 import MenuIcon from '@material-ui/icons/Menu'
+import LocationIcon from '@material-ui/icons/LocationCity'
 
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -58,7 +59,8 @@ const StyledMenu = styled.li`
 
 const StyledNav = styled.ul`
   && {
-    width: 100%
+    width: 100%;
+    padding: 0;
 }
 `
 const StyledButton = styled(Button)`
@@ -68,15 +70,21 @@ const StyledButton = styled(Button)`
 }
 `
 
+const StyledIconButton = styled(Button)`
+  && {
+    padding: 0.25rem 0 0 0;
+}
+`
+
 const Component = ({theme, classes}) => {
  return (
     <React.Fragment>
       <StyledAppBar position='sticky'>
         <Toolbar>
               <StyledNav>
-                <IconButton color='secondary' aria-label="Menu">
-                    <MenuIcon />
-                </IconButton>
+                <StyledIconButton color='secondary' aria-label="Menu">
+                    <LocationIcon style={{ fontSize: 38 }} />
+                </StyledIconButton>
                 <StyledMenu>
                   <IconButton color='secondary' aria-label="Menu">
                     <MenuIcon />
