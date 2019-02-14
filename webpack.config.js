@@ -33,7 +33,6 @@ const serverConfig = {
      }
    ]
  },
-
  output: {
   path: path.resolve(__dirname, 'dist'),
   publicPath: '/assets/'

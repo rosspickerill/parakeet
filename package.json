@@ -6,7 +6,7 @@
   "scripts": {
     "build:development": "rm -rf dist && webpack --mode development",
     "build:production": "rm -rf dist && webpack --mode production",
-    "build:watch": "node src/client.js",
+    "start": "node src/middlewareServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
