@@ -1,6 +1,7 @@
 const path = require('path')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const { HotModuleReplacementPlugin } = require('webpack')
 
 const serverConfig = {
  entry: './src/server.js',
@@ -33,9 +34,12 @@ const serverConfig = {
      }
    ]
  },
+ plugins: [new HotModuleReplacementPlugin(),],
  output: {
-  path: path.resolve(__dirname, 'dist'),
-  publicPath: '/assets/'
+  path: path.resolve('dist'),
+  publicPath: '/',
+  libraryTarget: 'commonjs2',
+  pathinfo: true,
 },
  name: 'server',
  target: 'node'
@@ -44,6 +48,7 @@ const serverConfig = {
 const clientConfig = {
   mode: 'development',
   entry: [
+    'webpack-hot-middleware/client?reload=true&quiet=true',
    './src/client.js'
   ],
   module: {
@@ -61,7 +66,8 @@ const clientConfig = {
                 displayName: true,
                 ssr: true,
               }],
-              'react-loadable/babel']
+              'react-loadable/babel',
+              'react-hot-loader/babel']
 
           }
         },
@@ -80,14 +86,16 @@ const clientConfig = {
     }),
     new ReactLoadablePlugin({
       filename: './dist/react-loadable.json',
-    })
+    }),
+    new HotModuleReplacementPlugin(),
   ],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist/public'),
     filename: '[name].client.js',
     chunkFilename: '[name].client.js',
-    publicPath: '/assets/'
+    publicPath: '/',
+    pathinfo: true,
   },
   name: 'client'
 }
